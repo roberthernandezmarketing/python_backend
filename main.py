@@ -2,8 +2,12 @@
 
 import uuid
 from fastapi import FastAPI, HTTPException
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
+from faker import Faker
+import random
+
+NIVELES = ["Básico", "Intermedio", "Avanzado"]
 
 # FastAPI instance
 app = FastAPI() 
@@ -32,7 +36,10 @@ def get_cursos():
 @app.post("/cursos", response_model=Curso)
 def create_curso(curso: Curso):
     curso.id = str(uuid.uuid4()) # Generate a unique ID
-    # curso.id = 5 # Generate a unique ID
+    # curso.name=Faker.bs().title(),  # genera un nombre tipo "Integración Sinérgica de Plataformas"
+    # curso.description=Faker.text(max_nb_chars=100),
+    # curso.duration=f"{random.randint(5, 50)}",
+    # curso.level=random.choice(NIVELES)
     cursos_db.append(curso)
     return curso
 
