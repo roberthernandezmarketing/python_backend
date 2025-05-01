@@ -4,8 +4,8 @@ import uuid
 from fastapi import FastAPI, HTTPException
 from typing import Optional, List
 from pydantic import BaseModel
-from faker import Faker
-import random
+# from faker import Faker
+# import random
 
 NIVELES = ["Básico", "Intermedio", "Avanzado"]
 
