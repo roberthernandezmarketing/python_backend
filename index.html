@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Curso</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 500px; margin: auto; }
+    label { display: block; margin-top: 1rem; }
+    input, textarea, select { width: 100%; padding: 0.5rem; margin-top: 0.3rem; }
+    button { margin-top: 1.5rem; padding: 0.7rem 1.2rem; }
+    pre { background: #f3f3f3; padding: 1rem; overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+  <h1>Crear nuevo curso</h1>
+
+  <form id="cursoForm">
+    <!-- <label>ID del Curso:
+      <input type="text" id="id" required>
+    </label> -->
+    <label>Nombre del Curso:
+      <input type="text" id="name" required>
+    </label>
+    <label>Descripción:
+      <textarea id="description" required></textarea>
+    </label>
+    <label>Duración (ej. 20 horas):
+      <input type="text" id="duration" required>
+    </label>
+    <label>Nivel:
+      <select id="level" required>
+        <option value="Básico">Básico</option>
+        <option value="Intermedio">Intermedio</option>
+        <option value="Avanzado">Avanzado</option>
+      </select>
+    </label>
+    <button type="submit">Crear Curso</button>
+  </form>
+
+  <h2>Respuesta del servidor:</h2>
+  <pre id="response"></pre>
+
+  <script>
+    document.getElementById("cursoForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const curso = {
+        // id: document.getElementById("id").value,
+        name: document.getElementById("name").value,
+        description: document.getElementById("description").value,
+        duration: document.getElementById("duration").value,
+        level: document.getElementById("level").value
+      };
+
+      const responseBox = document.getElementById("response");
+
+      try {
+        const res = await fetch("https://python-backend-prde.onrender.com/cursos", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(curso)
+        });
+
+        const data = await res.json();
+        responseBox.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        responseBox.textContent = "Error al crear el curso: " + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -4,6 +4,8 @@ import uuid
 from fastapi import FastAPI, HTTPException
 from typing import Optional, List
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 # from faker import Faker
 # import random
 
@@ -11,6 +13,14 @@ NIVELES = ["Básico", "Intermedio", "Avanzado"]
 
 # FastAPI instance
 app = FastAPI() 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Puedes reemplazar "*" por dominios específicos si prefieres
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Pydantic model for data validation
 class Curso(BaseModel): 
