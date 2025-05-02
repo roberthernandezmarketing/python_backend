@@ -26,7 +26,7 @@ app.add_middleware(
 class Curso(BaseModel): 
     id: Optional[str] = None
     name: str
-    descripction: Optional[str] = None
+    description: Optional[str] = None
     duration: int
     level: str
 
