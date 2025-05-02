@@ -32,9 +32,9 @@ class Curso(BaseModel):
 
 # Simulated database
 cursos_db = [
-    Curso(id="1", name="Curso 1", descripction="Descripcion del curso 1", duration=35, level="Basico"),
-    Curso(id="2", name="Curso 2", descripction="Descripcion del curso 2", duration=45, level="Intermedio"),
-    Curso(id="3", name="Curso 3", descripction="Descripcion del curso 3", duration=60, level="Avanzado")
+    Curso(id="1", name="Curso 1", description="Descripcion del curso 1", duration=36, level="Basico"),
+    Curso(id="2", name="Curso 2", description="Descripcion del curso 2", duration=45, level="Intermedio"),
+    Curso(id="3", name="Curso 3", description="Descripcion del curso 3", duration=60, level="Avanzado")
 ]
 
 # GET all courses
